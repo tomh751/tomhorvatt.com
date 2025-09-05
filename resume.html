@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tom Horvatt - Resume</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height:100vh; 
+      line-height:1.6;
+      background:#E6DACE;
+      padding:20px;
+    }
+
+    /* Header */
+    .header{
+      background:#E6DACE;
+      padding:1rem 0;
+      position:fixed;
+      left:0;
+      right:0;
+      top:0;
+      z-index:1000;
+    }
+    .header-content{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 2rem;
+    }
+    .logo{display:flex;align-items:center;gap:1rem}
+    .logo h1{font-size:1.8rem;color:#1c1c1c;font-weight:700}
+    .logo-subtitle{color:#444;font-size:.95rem;border-left:2px solid #000;padding-left:1rem}
+
+    .nav{display:flex;gap:2rem;list-style:none}
+    .nav a{ 
+      text-decoration:none;
+      color:#1c1c1c;
+      font-weight:600;
+      position:relative;
+      letter-spacing:.4px;
+    }
+    .nav a:hover{color:#000}
+    .nav a::after{
+      content:'';
+      position:absolute;
+      bottom:-5px;
+      left:0;
+      width:0;
+      height:2px;
+      background:#000;
+      transition:width .25s ease;
+    }
+    .nav a:hover::after{width:100%}
+
+    /* Resume Container */
+    .resume-container{
+      margin-top:120px;
+      max-width:1000px;
+      margin-left:auto;
+      margin-right:auto;
+      padding:0 20px;
+    }
+
+    .resume-header{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .resume-title{
+      font-size:3rem;
+      color:#1c1c1c;
+      font-weight:800;
+      margin-bottom:25px;
+    }
+
+    .download-btn{
+      padding:12px 28px;
+      border:2px solid #1c1c1c;
+      background:transparent;
+      color:#1c1c1c;
+      text-decoration:none;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      transition:all .3s ease;
+      font-size:.9rem;
+      border-radius:4px;
+      display:inline-block;
+    }
+    .download-btn:hover{
+      background:#1c1c1c;
+      color:#fff;
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Section Styles */
+    .resume-section{
+      margin-bottom:60px;
+    }
+
+    .section-title{
+      font-size:2.5rem;
+      color:#1c1c1c;
+      font-weight:700;
+      text-align:center;
+      margin-bottom:40px;
+    }
+
+    .resume-item{
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      padding:35px;
+      margin-bottom:25px;
+      display:grid;
+      grid-template-columns:220px 1fr;
+      gap:35px;
+      align-items:start;
+    }
+
+    .item-left{
+      text-align:left;
+    }
+
+    .date-range{
+      font-size:1rem;
+      color:#1c1c1c;
+      font-weight:700;
+      margin-bottom:8px;
+      line-height:1.4;
+    }
+
+    .institution{
+      font-size:.95rem;
+      color:#666;
+      font-style:italic;
+    }
+
+    .degree-title{
+      font-size:1.2rem;
+      color:#1c1c1c;
+      font-weight:700;
+      margin-bottom:12px;
+      line-height:1.3;
+    }
+
+    .job-title{
+      font-size:1.2rem;
+      color:#1c1c1c;
+      font-weight:700;
+      margin-bottom:8px;
+      line-height:1.3;
+    }
+
+    .item-right{
+      text-align:left;
+    }
+
+    .description{
+      font-size:1rem;
+      color:#555;
+      line-height:1.8;
+    }
+
+    .description ul{
+      margin:8px 0 0 0;
+      padding-left:20px;
+    }
+
+    .description li{
+      margin-bottom:8px;
+      line-height:1.6;
+    }
+
+    /* Skills Section */
+    .skills-grid{
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      padding:40px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:25px;
+    }
+
+    .skill-item{
+      font-size:1.05rem;
+      color:#555;
+      font-weight:600;
+      text-align:center;
+      padding:12px 8px;
+      background:#f8f8f8;
+      border-radius:6px;
+      transition:all .3s ease;
+    }
+
+    .skill-item:hover{
+      background:#1c1c1c;
+      color:#fff;
+      transform:translateY(-2px);
+    }
+
+    /* Languages Section */
+    .languages-grid{
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.1);
+      padding:40px;
+    }
+
+    .language-item{
+      font-size:1.1rem;
+      color:#555;
+      font-weight:600;
+      margin-bottom:16px;
+      padding:12px 0;
+      border-bottom:1px solid #eee;
+    }
+
+    .language-item:last-child{
+      margin-bottom:0;
+      border-bottom:none;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top:25px;
+      padding:25px 0 15px;
+    }
+
+    .footer-content{
+      padding:0 1rem;
+      display:flex;
+      flex-direction:column;
+      text-align:center;
+      gap:1.5rem;
+    }
+
+    .footer-text{
+      color:#666;
+      font-size:.75rem;
+      text-align:center;
+      order:2;
+    }
+
+    .contact-info{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      align-items:center;
+      order:1;
+    }
+
+    .contact-item{
+      text-align:center;
+    }
+    .contact-label{
+      font-weight:700;
+      color:#1c1c1c;
+      font-size:.85rem;
+      margin-bottom:.2rem;
+      display:block;
+    }
+    .contact-value{
+      color:#666;
+      font-size:.85rem;
+    }
+
+    /* Responsive Design */
+    @media(max-width:900px){
+      .resume-item{
+        grid-template-columns:1fr;
+        gap:20px;
+      }
+      .skills-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+      .resume-title{
+        font-size:2.5rem;
+      }
+      .section-title{
+        font-size:2rem;
+      }
+    }
+
+    @media(max-width:600px){
+      body{
+        padding:10px;
+      }
+      
+      .header{
+        position:static;
+        margin-bottom:20px;
+        padding:10px 0;
+      }
+      
+      .header-content{
+        padding:0 1rem;
+        flex-direction:column;
+        gap:12px;
+      }
+      
+      .logo{
+        flex-direction:column;
+        gap:4px;
+        text-align:center;
+      }
+      
+      .logo h1{
+        font-size:1.4rem;
+      }
+      
+      .logo-subtitle{
+        border-left:none;
+        border-top:2px solid #000;
+        padding-left:0;
+        padding-top:4px;
+        font-size:.85rem;
+      }
+      
+      .nav{
+        gap:.8rem;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+      
+      .nav a{
+        font-size:.75rem;
+        padding:6px 8px;
+      }
+      
+      .resume-container{
+        padding:0 10px;
+        margin-top:0;
+      }
+      
+      .resume-item{
+        padding:25px;
+      }
+      
+      .skills-grid{
+        grid-template-columns:1fr;
+        padding:30px;
+      }
+      
+      .languages-grid{
+        padding:30px;
+      }
+      
+      .resume-title{
+        font-size:2rem;
+      }
+      
+      .section-title{
+        font-size:1.8rem;
+      }
+      
+      .footer{
+        margin-top:25px;
+        padding:25px 0 15px;
+      }
+
+      .footer-content{
+        padding:0 1rem;
+        justify-content:space-between;
+        text-align:left;
+      }
+
+      .contact-info{
+        gap:1.5rem;
+        flex-wrap:nowrap;
+        justify-content:flex-end;
+      }
+
+      .contact-item{
+        text-align:center;
+        flex-shrink:0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <h1>Tom Horvatt</h1>
+        <div class="logo-subtitle">Data Enthusiast | Analyst</div>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li><a href="index.html">ABOUT ME</a></li>
+          <li><a href="resume.html">RESUME</a></li>
+          <li><a href="projects.html">PROJECTS</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Resume Content -->
+  <div class="resume-container">
+    <div class="resume-header">
+      <h1 class="resume-title">Resume</h1>
+      <a href="Tom_Horvatt_Resume.pdf" class="download-btn" download="Tom_Horvatt_Resume.pdf">Download Resume</a>
+    </div>
+
+    <!-- Education Section -->
+    <section class="resume-section">
+      <h2 class="section-title">Education</h2>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2023</div>
+          <div class="institution">Hebrew University</div>
+        </div>
+        <div class="item-right">
+          <div class="degree-title">Data Analyst Program</div>
+          <div class="description">
+            Mastering statistics for data analysis by using <strong>SQL/MySQL</strong>, <strong>Tableau</strong>, <strong>Python</strong>, and <strong>Excel</strong>.
+          </div>
+        </div>
+      </div>
+      
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2020-10 - 2023-06</div>
+          <div class="institution">Tel Aviv University</div>
+        </div>
+        <div class="item-right">
+          <div class="degree-title">B.A. Sociology, Anthropology & Communication</div>
+          <div class="description">
+            <strong>Achieving answers and conclusions</strong> by analyzing cultures and media in the digital age on various topics.
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2021-05 - 2021-06</div>
+          <div class="institution">Udemy</div>
+        </div>
+        <div class="item-right">
+          <div class="degree-title">SQL (Basic And Advanced)</div>
+          <div class="description">
+            Using <strong>SQL</strong> for <strong>manipulating tables and data</strong> in order to perform <strong>data analysis</strong>, <strong>data visualization</strong>, etc.
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2021-04 - 2021-06</div>
+          <div class="institution">Udemy</div>
+        </div>
+        <div class="item-right">
+          <div class="degree-title">Python For Data Science</div>
+          <div class="description">
+            Using <strong>Python</strong> to perform <strong>data analysis</strong> with libraries such as <strong>NumPy</strong>, <strong>Pandas</strong>, etc.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="resume-section">
+      <h2 class="section-title">Experience</h2>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">July 2023 - Present</div>
+          <div class="institution">Check Point</div>
+        </div>
+        <div class="item-right">
+          <div class="job-title">Sales Data Specialist</div>
+          <div class="description">
+            <ul>
+              <li>Review and analyze sales data to ensure accuracy and address discrepancies.</li>
+              <li>Contribute to the development and maintenance of complex databases, enhancing data management processes.</li>
+              <li>Lead projects from inception to completion, ensuring effective management and delivery.</li>
+              <li>Support users by resolving data-related issues and providing actionable feedback.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2023</div>
+          <div class="institution">TARA</div>
+        </div>
+        <div class="item-right">
+          <div class="job-title">Business Development Intern</div>
+          <div class="description">
+            Creating software using Python for the company's business needs.
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2021-08 - 2022-08</div>
+          <div class="institution">Justt</div>
+        </div>
+        <div class="item-right">
+          <div class="job-title">Chargeback Analyst</div>
+          <div class="description">
+            <ul>
+              <li>Building <strong>professional evidence documents</strong> to fight fraud and <strong>protect merchants</strong>.</li>
+              <li><strong>Improving & innovating</strong> the current working process.</li>
+              <li>Using <strong>programming skills</strong> for company projects to analyze and finalize various tasks.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2018 - 2021-06</div>
+          <div class="institution">After School Company</div>
+        </div>
+        <div class="item-right">
+          <div class="job-title">After-School Tutor</div>
+          <div class="description">
+            After-School Tutor.
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-item">
+        <div class="item-left">
+          <div class="date-range">2015 - 2018</div>
+          <div class="institution">IDF</div>
+        </div>
+        <div class="item-right">
+          <div class="job-title">Ammunition Inspector</div>
+          <div class="description">
+            Ammunition Inspector.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="resume-section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-item">Python</div>
+        <div class="skill-item">Problem-Solving</div>
+        <div class="skill-item">Excel</div>
+        <div class="skill-item">SQL</div>
+        <div class="skill-item">Initiative</div>
+        <div class="skill-item">Teamwork and Collaboration</div>
+        <div class="skill-item">Power BI</div>
+      </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section class="resume-section">
+      <h2 class="section-title">Languages</h2>
+      <div class="languages-grid">
+        <div class="language-item">English - Fluent</div>
+        <div class="language-item">Hebrew - Native</div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-text">© 2023 By Tom Horvatt</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+972-50-453-9496</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">tomh751@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Follow On</span>
+          <span class="contact-value">
+            <a href="https://www.linkedin.com/in/tom-horvatt-15624720a/" target="_blank" style="color:#666; text-decoration:none;">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tom Horvatt - Projects</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height:100vh; 
+      line-height:1.6;
+      background:#E6DACE;
+      padding:20px;
+    }
+
+    /* Header */
+    .header{
+      background:#E6DACE;
+      padding:1rem 0;
+      position:fixed;
+      left:0;
+      right:0;
+      top:0;
+      z-index:1000;
+    }
+    .header-content{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 2rem;
+    }
+    .logo{display:flex;align-items:center;gap:1rem}
+    .logo h1{font-size:1.8rem;color:#1c1c1c;font-weight:700}
+    .logo-subtitle{color:#444;font-size:.95rem;border-left:2px solid #000;padding-left:1rem}
+
+    .nav{display:flex;gap:2rem;list-style:none}
+    .nav a{ 
+      text-decoration:none;
+      color:#1c1c1c;
+      font-weight:600;
+      position:relative;
+      letter-spacing:.4px;
+    }
+    .nav a:hover{color:#000}
+    .nav a::after{
+      content:'';
+      position:absolute;
+      bottom:-5px;
+      left:0;
+      width:0;
+      height:2px;
+      background:#000;
+      transition:width .25s ease;
+    }
+    .nav a:hover::after{width:100%}
+
+    /* Projects Container */
+    .projects-container{
+      margin-top:120px;
+      max-width:1200px;
+      margin-left:auto;
+      margin-right:auto;
+      padding:0 20px;
+    }
+
+    .projects-header{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .projects-title{
+      font-size:3rem;
+      color:#1c1c1c;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    /* Project Item */
+    .project-item{
+      background:#fff;
+      border-radius:15px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.1);
+      margin-bottom:40px;
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:300px 1fr;
+      min-height:280px;
+      transition:transform .3s ease, box-shadow .3s ease;
+    }
+
+    .project-item:hover{
+      transform:translateY(-5px);
+      box-shadow:0 12px 35px rgba(0,0,0,0.15);
+    }
+
+    .project-content{
+      padding:40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      order:2;
+    }
+
+    .project-title{
+      font-size:1.6rem;
+      color:#1c1c1c;
+      font-weight:700;
+      margin-bottom:20px;
+      line-height:1.3;
+    }
+
+    .project-description{
+      font-size:1rem;
+      color:#555;
+      line-height:1.7;
+      text-align:justify;
+    }
+
+    .project-description a{
+      color:#1c1c1c;
+      font-weight:600;
+      text-decoration:underline;
+      transition:color .3s ease;
+    }
+
+    .project-description a:hover{
+      color:#0066cc;
+    }
+
+    .project-image{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:#f8f8f8;
+      order:1;
+    }
+
+    .project-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:10px;
+      max-height:240px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top:25px;
+      padding:25px 0 15px;
+    }
+
+    .footer-content{
+      padding:0 1rem;
+      display:flex;
+      flex-direction:column;
+      text-align:center;
+      gap:1.5rem;
+    }
+
+    .footer-text{
+      color:#666;
+      font-size:.75rem;
+      text-align:center;
+      order:2;
+    }
+
+    .contact-info{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      align-items:center;
+      order:1;
+    }
+
+    .contact-item{
+      text-align:center;
+    }
+
+    .contact-label{
+      font-weight:700;
+      color:#1c1c1c;
+      font-size:.85rem;
+      margin-bottom:.2rem;
+      display:block;
+    }
+    .contact-value{
+      color:#666;
+      font-size:.85rem;
+    }
+
+    /* Responsive Design */
+    @media(max-width:900px){
+      .project-item, 
+      .project-item:nth-child(even){
+        grid-template-columns:1fr;
+        min-height:auto;
+      }
+      
+      .project-item .project-content,
+      .project-item:nth-child(even) .project-content{
+        order:2;
+        padding:30px;
+      }
+      
+      .project-item .project-image,
+      .project-item:nth-child(even) .project-image{
+        order:1;
+        min-height:200px;
+      }
+      
+      .projects-title{
+        font-size:2.5rem;
+      }
+    }
+
+    @media(max-width:600px){
+      body{
+        padding:10px;
+      }
+      
+      .header{
+        position:static;
+        margin-bottom:20px;
+        padding:10px 0;
+      }
+      
+      .header-content{
+        padding:0 1rem;
+        flex-direction:column;
+        gap:12px;
+      }
+      
+      .logo{
+        flex-direction:column;
+        gap:4px;
+        text-align:center;
+      }
+      
+      .logo h1{
+        font-size:1.4rem;
+      }
+      
+      .logo-subtitle{
+        border-left:none;
+        border-top:2px solid #000;
+        padding-left:0;
+        padding-top:4px;
+        font-size:.85rem;
+      }
+      
+      .nav{
+        gap:.8rem;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+      
+      .nav a{
+        font-size:.75rem;
+        padding:6px 8px;
+      }
+      
+      .projects-container{
+        padding:0 10px;
+        margin-top:0;
+      }
+      
+      .project-content{
+        padding:25px;
+      }
+      
+      .projects-title{
+        font-size:2rem;
+      }
+      
+      .footer-content{
+        flex-direction:column;
+        text-align:center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <h1>Tom Horvatt</h1>
+        <div class="logo-subtitle">Data Enthusiast | Analyst</div>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li><a href="index.html">ABOUT ME</a></li>
+          <li><a href="resume.html">RESUME</a></li>
+          <li><a href="projects.html">PROJECTS</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Projects Content -->
+  <div class="projects-container">
+    <div class="projects-header">
+      <h1 class="projects-title">Projects</h1>
+    </div>
+
+    <!-- Project 1 -->
+    <div class="project-item">
+      <div class="project-content">
+        <h2 class="project-title">South Africa World Cup 2010 Data Analysis Using Python</h2>
+        <div class="project-description">
+          In this project, I did an exploratory data analysis on matches & player statistics from the world cup that occurred in 2010 with the addition of weather and continents data. Check the project on GitHub <a href="https://github.com/tomh751/Portfolio-Projects/tree/main/World%20cup%202010%20EDA" target="_blank">here</a>.
+        </div>
+      </div>
+      <div class="project-image">
+        <img src="assets/south-africa-2010.svg" />
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-item">
+      <div class="project-content">
+        <h2 class="project-title">Building A Video Games Dataset Using Python</h2>
+        <div class="project-description">
+          Web scraping task by python was used in this project for the purpose of gathering information from Wikipedia about video games from 1970-2017. The goal of this research was to combine the data into a dataset. You can check my project <a href="https://github.com/tomh751/Portfolio-Projects/tree/main/Video%20Games%20Data%20Scraping%20From%20The%20Web" target="_blank">here</a> on GitHub.
+        </div>
+      </div>
+      <div class="project-image">
+        <img src="assets/video-games.svg" alt="Video Games Dataset Analysis" />
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-item">
+      <div class="project-content">
+        <h2 class="project-title">Shift Management Project</h2>
+        <div class="project-description">
+          The final product of this project had two functions: 1) creating a friendly program for my colleagues to use in order to schedule their requested shifts. 2) To generate a new automatic spreadsheet at the beginning of each week and present an organized schedule according to the department's specific needs. The program's goal is to make the whole process more efficient. You can check my project <a href="https://github.com/tomh751/Portfolio-Projects/tree/main/weekly%20schedule%20project" target="_blank">here</a> on GitHub.
+        </div>
+      </div>
+      <div class="project-image">
+        <img src="assets/time-shifts-managments.svg" alt="Shift Management System" />
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-item">
+      <div class="project-content">
+        <h2 class="project-title">Customers Tickets Analysis</h2>
+        <div class="project-description">
+          In this project, I will present an in-depth analysis of customer success data from my workplace. I will showcase the data trends and differences between 2023 and 2024, highlight key insights that emerged, and outline the recommended action items based on the findings. <a href="#" target="_blank">Click here</a> to view the dashboard.
+        </div>
+      </div>
+      <div class="project-image">
+        <img src="assets/customer-tickets-analysis.svg" alt="Customer Success Analysis Dashboard" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-text">© 2023 By Tom Horvatt</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+972-50-453-9496</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">tomh751@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Follow On</span>
+          <span class="contact-value">
+            <a href="https://www.linkedin.com/in/tom-horvatt-15624720a/" target="_blank" style="color:#666; text-decoration:none;">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

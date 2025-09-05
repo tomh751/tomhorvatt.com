@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tom Horvatt - Data Enthusiast | Analyst</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height:100vh; 
+      line-height:1.6;
+      background:#E6DACE;
+      padding:20px;
+    }
+
+    /* Header */
+    .header{
+      background:#E6DACE;
+      padding:1rem 0;
+      position:fixed;
+      left:0;
+      right:0;
+      top:0;
+      z-index:1000;
+    }
+    .header-content{
+      max-width:1200px;
+      margin:0 auto;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 2rem;
+    }
+    .logo{display:flex;align-items:center;gap:1rem}
+    .logo h1{font-size:1.8rem;color:#1c1c1c;font-weight:700}
+    .logo-subtitle{color:#444;font-size:.95rem;border-left:2px solid #000;padding-left:1rem}
+
+    .nav{display:flex;gap:2rem;list-style:none}
+    .nav a{ 
+      text-decoration:none;
+      color:#1c1c1c;
+      font-weight:600;
+      position:relative;
+      letter-spacing:.4px;
+    }
+    .nav a:hover{color:#000}
+    .nav a::after{
+      content:'';
+      position:absolute;
+      bottom:-5px;
+      left:0;
+      width:0;
+      height:2px;
+      background:#000;
+      transition:width .25s ease;
+    }
+    .nav a:hover::after{width:100%}
+
+    /* Main Container */
+    .main-container{
+      margin-top:120px;
+      max-width:1000px;
+      margin-left:auto;
+      margin-right:auto;
+      background:#fff;
+      border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.1);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns:400px 1fr;
+      min-height:600px;
+    }
+
+    /* Left Profile Section */
+    .profile-section{
+      background:#f5f1eb;
+      padding:40px 30px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .profile-photo{
+      width:200px;
+      height:200px;
+      border-radius:50%;
+      overflow:hidden;
+      margin-bottom:24px;
+      border:4px solid #fff;
+      box-shadow:0 8px 24px rgba(0,0,0,0.15);
+      flex-shrink:0;
+    }
+    .profile-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .profile-name{
+      font-size:2rem;
+      font-weight:700;
+      color:#1c1c1c;
+      margin-bottom:12px;
+    }
+
+    .profile-divider{
+      width:80px;
+      height:3px;
+      background:#1c1c1c;
+      border:none;
+      margin:0 auto 16px;
+      flex-shrink:0;
+    }
+
+    .profile-title{
+      font-size:1.1rem;
+      font-weight:600;
+      color:#555;
+      margin-bottom:32px;
+    }
+
+    .social-links{
+      display:flex;
+      justify-content:center;
+    }
+    .social-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;
+      height:44px;
+      background:#1c1c1c;
+      color:#fff;
+      font-size:1.2rem;
+      text-decoration:none;
+      border-radius:50%;
+      transition:all .3s ease;
+    }
+    .social-link:hover{
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* Right Content Section */
+    .content-section{
+      padding:60px 50px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .welcome-title{
+      font-size:3.5rem;
+      color:#1c1c1c;
+      margin-bottom:8px;
+      font-weight:800;
+      line-height:1.1;
+    }
+
+    .welcome-subtitle{
+      font-size:1.3rem;
+      color:#666;
+      margin-bottom:32px;
+      font-weight:400;
+    }
+
+    .action-buttons{
+      display:flex;
+      gap:16px;
+      margin-bottom:32px;
+    }
+    .btn{
+      padding:12px 24px;
+      border:2px solid #1c1c1c;
+      background:transparent;
+      color:#1c1c1c;
+      text-decoration:none;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      transition:all .3s ease;
+      font-size:.9rem;
+      border-radius:4px;
+    }
+    .btn:hover{
+      background:#1c1c1c;
+      color:#fff;
+      transform:translateY(-2px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .description{
+      font-size:1rem;
+      color:#555;
+      line-height:1.7;
+      max-width:480px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top:25px;
+      padding:25px 0 15px;
+    }
+
+    .footer-content{
+      padding:0 1rem;
+      display:flex;
+      flex-direction:column;
+      text-align:center;
+      gap:1.5rem;
+    }
+
+    .footer-text{
+      color:#666;
+      font-size:.75rem;
+      text-align:center;
+      order:2;
+    }
+
+    .contact-info{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      align-items:center;
+      order:1;
+    }
+
+    .contact-item{
+      text-align:center;
+    }
+    .contact-label{
+      font-weight:700;
+      color:#1c1c1c;
+      font-size:.85rem;
+      margin-bottom:.2rem;
+      display:block;
+    }
+    .contact-value{
+      color:#666;
+      font-size:.85rem;
+    }
+
+    /* Responsive Design - FIXED MOBILE LAYOUT */
+    @media(max-width:900px){
+      body{
+        padding:15px;
+      }
+      
+      .header{
+        position:static;
+        margin-bottom:25px;
+        padding:15px 0;
+      }
+      
+      .main-container{
+        grid-template-columns:1fr;
+        margin-top:0;
+        min-height:auto;
+        overflow:visible;
+      }
+      
+      .profile-section{
+        padding:30px 20px;
+        min-height:auto;
+        overflow:visible;
+      }
+      
+      .profile-photo{
+        width:140px;
+        height:140px;
+        margin-bottom:18px;
+        flex-shrink:0;
+      }
+      
+      .profile-name{
+        font-size:1.5rem;
+        margin-bottom:10px;
+      }
+      
+      .profile-divider{
+        width:60px;
+        height:2px;
+        margin:0 auto 12px;
+      }
+      
+      .profile-title{
+        font-size:1rem;
+        margin-bottom:18px;
+      }
+      
+      .content-section{
+        padding:25px 20px 35px;
+        display:flex;
+        flex-direction:column;
+      }
+      
+      /* MOBILE CONTENT ORDER */
+      .action-buttons{
+        order:1;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+        margin-bottom:25px;
+        width:100%;
+      }
+      
+      .welcome-title{
+        order:2;
+        font-size:2.2rem;
+        margin-bottom:10px;
+      }
+      
+      .welcome-subtitle{
+        order:3;
+        font-size:1rem;
+        margin-bottom:20px;
+      }
+      
+      .description{
+        order:4;
+        font-size:.9rem;
+        line-height:1.6;
+        margin-top:0;
+      }
+      
+      .btn{
+        padding:12px 8px;
+        font-size:.85rem;
+        text-align:center;
+      }
+    }
+
+    @media(max-width:600px){
+      body{
+        padding:10px;
+      }
+      
+      .header{
+        position:static;
+        margin-bottom:20px;
+        padding:10px 0;
+      }
+      
+      .header-content{
+        padding:0 1rem;
+        flex-direction:column;
+        gap:12px;
+      }
+      
+      .logo{
+        flex-direction:column;
+        gap:4px;
+        text-align:center;
+      }
+      
+      .logo h1{
+        font-size:1.4rem;
+      }
+      
+      .logo-subtitle{
+        border-left:none;
+        border-top:2px solid #000;
+        padding-left:0;
+        padding-top:4px;
+        font-size:.85rem;
+      }
+      
+      .nav{
+        gap:.8rem;
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+      
+      .nav a{
+        font-size:.75rem;
+        padding:6px 8px;
+      }
+      
+      .main-container{
+        margin-top:0;
+        border-radius:12px;
+        overflow:visible;
+      }
+      
+      .profile-section{
+        border-radius:12px 12px 0 0;
+      }
+      
+      .profile-section{
+        padding:25px 15px;
+        overflow:visible;
+        min-height:auto;
+      }
+      
+      .profile-photo{
+        width:120px;
+        height:120px;
+        margin-bottom:15px;
+        flex-shrink:0;
+      }
+      
+      .profile-name{
+        font-size:1.3rem;
+      }
+      
+      .content-section{
+        padding:20px 15px 25px;
+        display:flex;
+        flex-direction:column;
+      }
+      
+      /* MOBILE CONTENT ORDER - SMALL SCREENS */
+      .action-buttons{
+        order:1;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;
+        margin-bottom:20px;
+        width:100%;
+      }
+      
+      .welcome-title{
+        order:2;
+        font-size:1.8rem;
+        margin-bottom:8px;
+      }
+      
+      .welcome-subtitle{
+        order:3;
+        font-size:.95rem;
+        margin-bottom:18px;
+      }
+      
+      .description{
+        order:4;
+        font-size:.85rem;
+        line-height:1.5;
+        margin-top:0;
+      }
+      
+      .btn{
+        padding:10px 6px;
+        font-size:.8rem;
+        text-align:center;
+        letter-spacing:.5px;
+      }
+      
+      .footer{
+        margin-top:25px;
+        padding:25px 0 15px;
+      }
+      
+      .footer-content{
+        flex-direction:column;
+        text-align:center;
+        padding:0 1rem;
+      }
+      
+      .contact-info{
+        flex-direction:column;
+        gap:1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <h1>Tom Horvatt</h1>
+        <div class="logo-subtitle">Data Enthusiast | Analyst</div>
+      </div>
+      <nav>
+        <ul class="nav">
+          <li><a href="index.html">ABOUT ME</a></li>
+          <li><a href="resume.html">RESUME</a></li>
+          <li><a href="projects.html">PROJECTS</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main-container">
+    <!-- Left Profile Section -->
+    <section class="profile-section" id="about">
+      <div class="profile-photo">
+        <img src="assets/tom-photo.svg" alt="Tom Horvatt" />
+      </div>
+
+      <h2 class="profile-name">Tom Horvatt</h2>
+      <hr class="profile-divider" />
+      <div class="profile-title">Data Enthusiast | Analyst</div>
+
+      <div class="social-links">
+        <a class="social-link" href="https://www.linkedin.com/in/tom-horvatt-15624720a/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Right Content Section -->
+    <section class="content-section">
+      <h1 class="welcome-title">Hello!</h1>
+      <h2 class="welcome-subtitle">Welcome to my portfolio website</h2>
+
+      <div class="action-buttons">
+        <a href="resume.html" class="btn">Resume</a>
+        <a href="projects.html" class="btn">Projects</a>
+      </div>
+
+      <p class="description">
+        I have a strong passion for data analysis and enjoy uncovering insights through tools like Excel, Power BI, Tableau, and Python. Currently, I work as a Sales Data Specialist at Check Point, where I leverage data to drive informed decision-making. Feel free to explore my work and see how I transform raw data into meaningful insights!
+      </p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-text">© 2023 By Tom Horvatt</div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-label">Phone</span>
+          <span class="contact-value">+972-50-453-9496</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Email</span>
+          <span class="contact-value">tomh751@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-label">Follow On</span>
+          <span class="contact-value">
+            <a href="https://www.linkedin.com/in/tom-horvatt-15624720a/" target="_blank" style="color:#666; text-decoration:none;">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
